@@ -8,7 +8,7 @@ const Home = () => {
     }, [])
 
     return (
-        <div>Welcome to Home</div>
+        <div className="text-3xl font-bold underline">Welcome to Home</div>
     )
 }
 
