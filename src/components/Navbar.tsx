@@ -11,7 +11,11 @@ const navigation = [
     { name: 'Login', href: 'login', current: false },
 ]
 
-
+function logout() {
+    localStorage.removeItem('token')
+    setUser(null)
+    navigate('/home')
+}
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -116,12 +120,13 @@ export default function Example() {
                                                 )}
                                             </Menu.Item>
                                             <Menu.Item>
-                                                {({ active }) => (
+                                                {({ active}) => (
                                                     <a
                                                         href="#"
+                                                        onClick={logout}
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
-                                                        Sign out
+                                                        Logout
                                                     </a>
                                                 )}
                                             </Menu.Item>

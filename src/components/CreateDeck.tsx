@@ -30,7 +30,7 @@ const CreateDeck = () => {
         })
         console.log(resp.data)
 
-        navigate('/songs')
+        navigate('/decks')
     }
 
     console.log(formData)
