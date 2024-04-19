@@ -8,6 +8,8 @@ import Signup from "./components/Signup"
 import Login from "./components/Login"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import CreateCard from "./components/CreateCard"
+import CardLibrary from "./components/CardLibrary"
 
 function App() {
 
@@ -34,7 +36,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path='/decks' element={<DeckLibrary />} />
         <Route path='/study' element={<Study />} />
-        <Route path='/create' element={<CreateDeck />} />
+        <Route path='/deck/create' element={<CreateDeck />} />
+        <Route path='/cards' element={<CardLibrary/>}/>
+        <Route path='/card/create' element={<CreateCard />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login fetchUser={fetchUser} />} />
       </Routes>

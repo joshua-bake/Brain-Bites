@@ -1,119 +1,125 @@
 import axios from 'axios'
-import React, { SyntheticEvent, useState } from 'react'
+import { SyntheticEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const CreateDeck = () => {
     const navigate = useNavigate()
 
+
+    // ! Update fields for Deck
+    // ! Update fields for Card
+    // ? When deck form submitted, navigate to create card form. then navigate to deck library
+    // ? tailwind dropdowns for create cards for adding to deck
+    // ? create mulitple cards at once.
+    //? can submit blank deck form
+
+
+    // ? Deck Form
     const [formData, setFormData] = useState({
-        name: "",
-        artist: "",
-        album: "",
-        genre: "",
-        albumCover: "",
-        songLink: "",
+        title: "",
+        description: "",
+        category: "",
     })
+
+    const [errorMessage, setErrorMessage] = useState("")
 
     function handleChange(e: any) {
         const fieldName = e.target.name
         const newFormData = structuredClone(formData)
         newFormData[fieldName as keyof typeof formData] = e.target.value
         setFormData(newFormData)
+        setErrorMessage("")
     }
 
     async function handleSubmit(e: SyntheticEvent) {
-        e.preventDefault() //? Prevents the page from refreshing.
+        try {
+            e.preventDefault() //? Prevents the page from refreshing.
 
-        const token = localStorage.getItem('token')
-        const resp = await axios.post('/api/songs', formData, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-        console.log(resp.data)
-
-        navigate('/decks')
+            const token = localStorage.getItem('token')
+            const resp = await axios.post('/api/decks', formData, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            console.log(resp.data)
+            navigate('/decks')
+        } catch (e: any) {
+            setErrorMessage(e.response.data.message)
+        }
     }
-
     console.log(formData)
 
-    return <div className="section">
-        <div className="container">
-            <form onSubmit={handleSubmit}>
-                <div className="field">
-                    <label className="label">Song Name</label>
-                    <div className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            name={'name'}
-                            onChange={handleChange}
-                            value={formData.name}
-                        />
+    return (
+        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                    Create Your Deck
+                </h2>
+            </div>
+
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <form className="space-y-6" action="decks" method="POST" onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="title" className="block text-sm font-medium leading- text-gray-900">
+                            Deck Name
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="title"
+                                name="title"
+                                type="text"
+                                required
+                                onChange={handleChange}
+                                value={formData.title}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="field">
-                    <label className="label">Artist</label>
-                    <div className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            name={'artist'}
-                            onChange={handleChange}
-                            value={formData.artist}
-                        />
+                    <div>
+                        <label htmlFor="description" className="block text-sm font-medium leading- text-gray-900">
+                            Description of Deck
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="description"
+                                name="description"
+                                type="text"
+                                required
+                                onChange={handleChange}
+                                value={formData.description}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="field">
-                    <label className="label">Album</label>
-                    <div className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            name={'album'}
-                            onChange={handleChange}
-                            value={formData.album}
-                        />
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">
+                                Category
+                            </label>
+                        </div>
+                        <div className="mt-2">
+                            <input
+                                id="category"
+                                name="category"
+                                type="text"
+                                required
+                                onChange={handleChange}
+                                value={formData.category}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="field">
-                    <label className="label">Genre</label>
-                    <div className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            name={'genre'}
-                            onChange={handleChange}
-                            value={formData.genre}
-                        />
+                    <div>
+                        <button
+                            type="submit"
+                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Submit Deck
+                        </button>
                     </div>
-                </div>
-                <div className="field">
-                    <label className="label">Album Cover Image</label>
-                    <div className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            name={'albumCover'}
-                            onChange={handleChange}
-                            value={formData.albumCover}
-                        />
-                    </div>
-                </div>
-                <div className="field">
-                    <label className="label">YouTube Song Link</label>
-                    <div className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            name={'songLink'}
-                            onChange={handleChange}
-                            value={formData.songLink}
-                        />
-                    </div>
-                </div>
-                <button className="button">Submit</button>
-            </form>
+                </form>
+                {errorMessage && <p >{errorMessage}</p>}
+            </div>
         </div>
-    </div>
+    )
 }
 
 export default CreateDeck

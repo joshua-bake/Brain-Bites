@@ -4,6 +4,6 @@ export interface IDeck {
     _id: string,
     title: string,
     description: string,
-    categories: string,
+    category: string,
     cards: Array<ICard>
 }
