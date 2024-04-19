@@ -10,7 +10,7 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
         { name: 'Home', href: 'home', current: true },
         { name: 'Deck Library', href: 'decks', current: false },
         { name: 'Study', href: 'study', current: false },
-        // { name: 'Create FlashCards', href: 'create', current: false },
+        // { name: 'Create FlashCards', href: 'deck/create', current: false },
         // { name: 'Signup', href: 'signup', current: false },
         // { name: 'Login', href: 'login', current: false },
     ]
@@ -108,7 +108,7 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
                                             {!user && <Menu.Item>
                                                 {({ active }) => (
                                                     <a
-                                                        href="create"
+                                                        href="deck/create"
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Create FlashCards
