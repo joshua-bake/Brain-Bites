@@ -37,7 +37,7 @@ const CreateDeck = () => {
             e.preventDefault() //? Prevents the page from refreshing.
 
             const token = localStorage.getItem('token')
-            const resp = await axios.post(`${baseUrl}/api/decks`, formData, {
+            const resp = await axios.post(`${baseUrl}/decks`, formData, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             console.log(resp.data)

@@ -12,7 +12,7 @@ const CardLibrary = () => {
 
     useEffect(() => {
         async function fetchCards() {
-            const resp = await fetch(`${baseUrl}/api/cards`)
+            const resp = await fetch(`${baseUrl}/cards`)
             const data = await resp.json()
             setCards(data)
         }

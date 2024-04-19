@@ -31,7 +31,7 @@ const Signup = () => {
     async function handleSubmit(e: SyntheticEvent) {
         try {
             e.preventDefault()
-            const resp = await axios.post(`${baseUrl}/api/signup`, formData)
+            const resp = await axios.post(`${baseUrl}/signup`, formData)
             console.log(resp.data)
             navigate('/login')
         } catch (e: any) {

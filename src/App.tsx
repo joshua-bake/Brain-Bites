@@ -18,7 +18,7 @@ function App() {
 
   async function fetchUser() {
     const token = localStorage.getItem('token')
-    const resp = await axios.get(`${baseUrl}/api/user`, {
+    const resp = await axios.get(`${baseUrl}/user`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     setUser(resp.data)
@@ -38,7 +38,7 @@ function App() {
         <Route path='/decks' element={<DeckLibrary />} />
         <Route path='/study' element={<Study />} />
         <Route path='/deck/create' element={<CreateDeck />} />
-        <Route path='/cards' element={<CardLibrary/>}/>
+        <Route path='/cards' element={<CardLibrary />} />
         <Route path='/card/create' element={<CreateCard />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login fetchUser={fetchUser} />} />

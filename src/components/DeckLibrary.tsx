@@ -13,7 +13,7 @@ const DeckLibrary = () => {
 
     useEffect(() => {
         async function fetchDecks() {
-            const resp = await fetch(`${baseUrl}/api/decks`)
+            const resp = await fetch(`${baseUrl}/decks`)
             const data = await resp.json()
             setDecks(data)
         }
