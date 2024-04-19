@@ -34,7 +34,7 @@ function App() {
     <Router>
       <Navbar user={user} setUser={setUser} />
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path='/decks' element={<DeckLibrary />} />
         <Route path='/study' element={<Study />} />
         <Route path='/deck/create' element={<CreateDeck />} />

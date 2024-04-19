@@ -7,7 +7,7 @@ import { IUser } from '../interfaces/user'
 export default function Navbar({ user, setUser }: { user: IUser | null, setUser: Function }) {
 
     const navigation = [
-        { name: 'Home', href: 'home', current: true },
+        { name: 'Home', href: '/', current: true },
         { name: 'Deck Library', href: 'decks', current: false },
         { name: 'Study', href: 'study', current: false },
         // { name: 'Create FlashCards', href: 'deck/create', current: false },

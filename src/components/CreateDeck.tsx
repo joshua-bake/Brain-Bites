@@ -34,7 +34,7 @@ const CreateDeck = () => {
 
     async function handleSubmit(e: SyntheticEvent) {
         try {
-            e.preventDefault() //? Prevents the page from refreshing.
+            e.preventDefault()
 
             const token = localStorage.getItem('token')
             const resp = await axios.post(`${baseUrl}/decks`, formData, {
@@ -48,12 +48,17 @@ const CreateDeck = () => {
     }
     console.log(formData)
 
+    function handleCardClick() {
+        navigate('/card/create')
+    }
+
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                     Create Your Deck
                 </h2>
+                <button onClick={handleCardClick} className='button is-danger'>Create Cards</button>
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
