@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ICard } from '../interfaces/card'
-import ShowDecks from './ShowDecks'
 import ShowCards from './ShowCards'
+import { baseUrl } from '../config'
 
 type Cards = null | Array<ICard>
 
@@ -12,7 +12,7 @@ const CardLibrary = () => {
 
     useEffect(() => {
         async function fetchCards() {
-            const resp = await fetch('/api/cards')
+            const resp = await fetch(`${baseUrl}/api/cards`)
             const data = await resp.json()
             setCards(data)
         }

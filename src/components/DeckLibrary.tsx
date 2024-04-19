@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IDeck } from '../interfaces/deck'
 import ShowDecks from './ShowDecks'
+import { baseUrl } from '../config'
 
 type Decks = null | Array<IDeck>
 
@@ -12,7 +13,7 @@ const DeckLibrary = () => {
 
     useEffect(() => {
         async function fetchDecks() {
-            const resp = await fetch('/api/decks')
+            const resp = await fetch(`${baseUrl}/api/decks`)
             const data = await resp.json()
             setDecks(data)
         }

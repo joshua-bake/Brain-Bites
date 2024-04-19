@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { SyntheticEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { baseUrl } from '../config'
 
 const Login = ({ fetchUser }: { fetchUser: Function }) => {
     // ? Password reset stretch goal
@@ -25,7 +26,7 @@ const Login = ({ fetchUser }: { fetchUser: Function }) => {
     async function handleSubmit(e: SyntheticEvent) {
         try {
             e.preventDefault() //? Prevents the page from refreshing
-            const resp = await axios.post('/api/login', formData)
+            const resp = await axios.post(`${baseUrl}/api/login`, formData)
             localStorage.setItem('token', resp.data.token)
             console.log(resp.data)
             fetchUser()

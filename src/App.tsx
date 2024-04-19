@@ -10,6 +10,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import CreateCard from "./components/CreateCard"
 import CardLibrary from "./components/CardLibrary"
+import { baseUrl } from "./config"
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
 
   async function fetchUser() {
     const token = localStorage.getItem('token')
-    const resp = await axios.get('/api/user', {
+    const resp = await axios.get(`${baseUrl}/api/user`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     setUser(resp.data)

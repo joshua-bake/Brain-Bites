@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { SyntheticEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { baseUrl } from '../config'
 
 const CreateDeck = () => {
     const navigate = useNavigate()
@@ -36,7 +37,7 @@ const CreateDeck = () => {
             e.preventDefault() //? Prevents the page from refreshing.
 
             const token = localStorage.getItem('token')
-            const resp = await axios.post('/api/decks', formData, {
+            const resp = await axios.post(`${baseUrl}/api/decks`, formData, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             console.log(resp.data)

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { IDeck } from '../interfaces/deck'
+import { baseUrl } from '../config'
 
 type Decks = null | Array<IDeck>
 
@@ -15,7 +16,7 @@ const CreateCard = () => {
 
     useEffect(() => {
         async function fetchDecks() {
-            const resp = await fetch('/api/decks')
+            const resp = await fetch(`${baseUrl}/api/decks`)
             const data = await resp.json()
             setDecks(data)
         }
@@ -25,7 +26,7 @@ const CreateCard = () => {
     console.log(decks)
     //! need to get decks so it can map over the options
     const deckOptions = [
-        {decks},
+        { decks },
 
     ]
 
@@ -66,7 +67,7 @@ const CreateCard = () => {
             e.preventDefault() //? Prevents the page from refreshing.
 
             const token = localStorage.getItem('token')
-            const resp = await axios.post('/api/cards', formData, {
+            const resp = await axios.post(`${baseUrl}/api/cards`, formData, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             console.log(resp.data)
