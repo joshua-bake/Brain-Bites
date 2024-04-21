@@ -52,7 +52,7 @@ const CreateCard = () => {
             e.preventDefault()
 
             const token = localStorage.getItem('token')
-            const resp = await axios.post(`${baseUrl}/cards`, formData, {
+            const resp = await axios.post(`${baseUrl}/cards`, formData,  {
                 headers: { Authorization: `Bearer ${token}` }
             })
             console.log(resp.data)

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react"
 import CreateCard from "./components/CreateCard"
 import CardLibrary from "./components/CardLibrary"
 import { baseUrl } from "./config"
+import ShowCards from "./components/ShowCards"
 
 function App() {
 
@@ -37,9 +38,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path='/decks' element={<DeckLibrary />} />
         <Route path='/study' element={<Study />} />
+        <Route path="/study/:deckId" element={<Study />} />
         <Route path='/deck/create' element={<CreateDeck />} />
         <Route path='/cards' element={<CardLibrary />} />
         <Route path='/card/create' element={<CreateCard />} />
+        <Route path="/cards/:deckId" element={<ShowCards />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login fetchUser={fetchUser} />} />
       </Routes>
