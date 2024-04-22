@@ -9,8 +9,8 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
     const navigation = [
         { name: 'Home', href: '/', current: true },
         { name: 'Deck Library', href: 'decks', current: false },
+        { name: 'Card Library', href: 'cards', current: false },
         { name: 'Study', href: 'study', current: false },
-        // { name: 'Create FlashCards', href: 'deck/create', current: false },
         // { name: 'Signup', href: 'signup', current: false },
         // { name: 'Login', href: 'login', current: false },
     ]

@@ -8,6 +8,18 @@ type Decks = null | Array<IDeck>
 
 const CreateCard = () => {
 
+    const updateDeckId = (deckId: string) => {
+        setFormData(prevState => ({
+            ...prevState,
+            deck_id: deckId
+        }));
+        setErrorMessage("");
+    };
+
+    function handleDeckIdChange(e: any) {
+        const deckId = e.target.value;
+        updateDeckId(deckId);
+    }
 
 
     const [decks, setDecks] = useState<Decks>(null)
@@ -33,7 +45,6 @@ const CreateCard = () => {
     const [formData, setFormData] = useState({
         question: "",
         answer: "",
-        category: "",
         deck_id: "",
     })
 
@@ -52,25 +63,25 @@ const CreateCard = () => {
             e.preventDefault()
 
             const token = localStorage.getItem('token')
-            const resp = await axios.post(`${baseUrl}/cards`, formData,  {
+            const resp = await axios.post(`${baseUrl}/cards`, formData, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             console.log(resp.data)
             navigate('/cards')
         } catch (e: any) {
-            setErrorMessage(e.response.data.message)
+            setErrorMessage(e.response?.data?.message || "An error occurred while submitting the form.")
         }
     }
     console.log(formData)
 
-    function handleCardSubmit(e: any) {
-        //? update this so that the deck title matches the deck id since its an integer in order to post
-        const fieldName = e.target.name
-        const newFormData = structuredClone(formData)
-        newFormData[fieldName as keyof typeof formData] = e.target.value
-        setFormData(newFormData)
-        setErrorMessage("")
-    }
+    // function handleCardSubmit(e: any) {
+    //     //? update this so that the deck title matches the deck id since its an integer in order to post
+    //     const fieldName = e.target.name
+    //     const newFormData = structuredClone(formData)
+    //     newFormData[fieldName as keyof typeof formData] = e.target.value
+    //     setFormData(newFormData)
+    //     setErrorMessage("")
+    // }
 
 
     return (
@@ -123,7 +134,7 @@ const CreateCard = () => {
                         </div>
                         <div className="mt-2">
                             <label>
-                                <select name="deck_id" value={formData.deck_id} onChange={handleChange}>
+                                <select name="deck_id" value={formData.deck_id} onChange={handleDeckIdChange}>
                                     <option value="">Select a Deck</option>
                                     {decks?.map(deck => (
                                         <option key={deck.id} value={deck.id}>{deck.title}</option>
@@ -131,7 +142,6 @@ const CreateCard = () => {
                                 </select>
                             </label>
                         </div>
-
                         
                     </div>
 
@@ -141,7 +151,7 @@ const CreateCard = () => {
                             type="submit"
                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
-                            Submit Deck
+                            Submit Card
                         </button>
                     </div>
                 </form>

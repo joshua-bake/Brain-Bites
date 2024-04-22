@@ -42,7 +42,7 @@ function App() {
         <Route path='/deck/create' element={<CreateDeck />} />
         <Route path='/cards' element={<CardLibrary />} />
         <Route path='/card/create' element={<CreateCard />} />
-        <Route path="/cards/:deckId" element={<ShowCards />} />
+        <Route path="/cards/:cardId" element={<ShowCards user={user} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login fetchUser={fetchUser} />} />
       </Routes>

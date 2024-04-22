@@ -1,46 +1,53 @@
 import { useEffect, useState } from 'react'
 import { ICard } from '../interfaces/card'
+import { IDeck } from '../interfaces/deck'
 import ShowCards from './ShowCards'
 import { baseUrl } from '../config'
 
 type Cards = null | Array<ICard>
-
+type Decks = null | Array<IDeck>
 
 const CardLibrary = () => {
-
-    const [cards, setCards] = useState<Cards>(null)
+    const [decks, setDecks] = useState<Decks>(null);
 
     useEffect(() => {
-        async function fetchCards() {
-            const resp = await fetch(`${baseUrl}/cards`)
-            const data = await resp.json()
-            setCards(data)
+        async function fetchDecks() {
+            const resp = await fetch(`${baseUrl}/decks`);
+            const data = await resp.json();
+            setDecks(data);
         }
-        fetchCards()
-    }, [])
+        fetchDecks();
+    }, []);
 
-    console.log(cards)
+    console.log('the decks are...', decks);
 
-    if (!cards) {
-        return <div>
-            <div className="lds-ripple"><div></div><div></div></div>
-        </div>
+    if (!decks) {
+        return (
+            <div>
+                <div className="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        );
     }
 
-
-    return <section className='section'>
-        <div className="container">
-            <div className="">
-                {cards?.map(card => {
-                    return <ShowCards
-                        key={card._id}
-                        {...card}
-                    />
-
-                })}
+    return (
+        <section className="section">
+            <div className="container">
+                {decks.map((deck) => (
+                    <div key={deck.id}>
+                        <h2>{deck.title}</h2>
+                        <div className="cards-container">
+                            {deck.cards.map((card) => (
+                                <ShowCards key={card.id} {...card} />
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
-        </div>
-    </section>
-}
+        </section>
+    );
+};
 
 export default CardLibrary

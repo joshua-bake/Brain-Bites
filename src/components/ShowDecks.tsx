@@ -5,15 +5,14 @@ import { useNavigate } from 'react-router-dom';
 const ShowDecks = ({ id, title, description, category }: IDeck) => {
     const navigate = useNavigate();
 
-    // Handle click event for Study button
     const handleStudyClick = () => {
         navigate(`/study/${id}`);
     };
 
-    // Handle click event for Cards button
-    const handleCardsClick = () => {
-        navigate(`/cards/${id}`);
-    };
+    // ? Stretch goal will add later to display the revelant cards to the specific deck. 
+    // const handleCardsClick = () => {
+    //     navigate(`/cards/${id}`);
+    // };
 
     return (
         <section className="section">
@@ -34,7 +33,7 @@ const ShowDecks = ({ id, title, description, category }: IDeck) => {
                                 Study
                             </button>
                         </div>
-                        <div>
+                        {/* <div>
                             <button
                                 type="button"
                                 onClick={handleCardsClick}
@@ -42,7 +41,7 @@ const ShowDecks = ({ id, title, description, category }: IDeck) => {
                             >
                                 Cards
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
