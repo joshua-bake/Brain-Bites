@@ -55,7 +55,7 @@ function App() {
         <Route path='/deck/create' element={<CreateDeck />} />
         <Route path='/cards' element={<CardLibrary />} />
         <Route path='/card/create' element={<CreateCard />} />
-        <Route path="/cards/:cardId" element={<ShowCards _id={""} question={""} answer={""} category={""} id={""} />} />
+        <Route path="/cards/:cardId" element={<ShowCards _id={""} question={""} answer={""} category={""} id={""} difficulty={""} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login fetchUser={fetchUser} />} />
       </Routes>
