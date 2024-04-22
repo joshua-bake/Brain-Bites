@@ -7,6 +7,8 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 
+//! fix flashcard need animation to flip, need front and back separate style to a flashcard
+
 const FlashcardStudy = () => {
     const navigate = useNavigate();
     const [cards, setCards] = useState<ICard[]>([]);
@@ -155,14 +157,12 @@ const FlashcardStudy = () => {
                                         <div onClick={handleFlip} className="flip-button card-header mx-4">
                                             <button>Flip Card</button>
                                         </div>
-                                        <div onClick={() => setIsFlipped(!isFlipped)} className="front flashcard-front card-content text-center">
+                                        <div onClick={() => setIsFlipped(!isFlipped)} className="flashcard-front card-content text-center">
                                             <h2>Front</h2>
                                             <p>{cards[currentIndex]?.question}</p>
                                         </div>
-
-
                                     </div>
-                                    <div onClick={() => setIsFlipped(!isFlipped)} className="back flashcard-back card-content text-center">
+                                    <div onClick={() => setIsFlipped(!isFlipped)} className="flashcard-back card-content text-center">
                                         <h2>Back</h2>
                                         <p>{cards[currentIndex]?.answer}</p>
                                     </div>
@@ -170,15 +170,14 @@ const FlashcardStudy = () => {
                             ) : (
                                 <p>No flashcards available.</p>
                             )}
-                            <div className="controls card-footer text-is-centered">
+                            <div className="controls has-text-centered">
                                 <button onClick={() => handleNextCard('easy')} className='mx-4'>Easy</button>
                                 <button onClick={() => handleNextCard('medium')} className='mx-4'>Medium</button>
                                 <button onClick={() => handleNextCard('hard')} className='mx-4'>Hard</button>
                                 <button onClick={() => handleNextCard('challenging')} className='mx-4'>Challenging</button>
                             </div>
-                            <div className="controls card-footer">
-                                <br />
-                                <button onClick={handleEndOfStudy} className='mx-4'>End Study Session</button>
+                            <div className="controls has-text-centered">
+                                <button onClick={handleEndOfStudy} className='mx-4 pt-4'>End Study Session</button>
                             </div>
                         </div>
                     </div>

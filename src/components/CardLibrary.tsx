@@ -23,12 +23,7 @@ const CardLibrary = () => {
 
     if (!decks) {
         return (
-            <div>
-                <div className="lds-ripple">
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
+            <div className="lds-hourglass"></div>
         );
     }
 

@@ -5,7 +5,6 @@ import { baseUrl } from '../config'
 
 type Decks = null | Array<IDeck>
 
-
 const DeckLibrary = () => {
 
     const [decks, setDecks] = useState<Decks>(null)
@@ -22,12 +21,8 @@ const DeckLibrary = () => {
 
     console.log(decks)
 
-    // ? We have decks now, need to figure a stylistic way to display them.
-
     if (!decks) {
-        return <div>
-            <div className="lds-ripple"><div></div><div></div></div>
-        </div>
+        return <div className="lds-hourglass"></div>
     }
 
     return <section className='section'>

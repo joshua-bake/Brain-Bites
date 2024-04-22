@@ -9,11 +9,6 @@ const ShowDecks = ({ id, title, description, category }: IDeck) => {
         navigate(`/study?deckId=${id}`);
     };
 
-    // ? Stretch goal will add later to display the revelant cards to the specific deck. 
-    // const handleCardsClick = () => {
-    //     navigate(`/cards/${id}`);
-    // };
-
     return (
         <section className="section">
             <div className="column is-one-quarter-desktop is-one-third-tablet">

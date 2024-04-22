@@ -34,10 +34,6 @@ const CreateCard = () => {
     }, [])
 
     console.log(decks)
-    //! need to get decks so it can map over the options    
-
-    console.log('deck options are...', decks)
-
 
     const navigate = useNavigate()
 
@@ -74,15 +70,11 @@ const CreateCard = () => {
     }
     console.log(formData)
 
-    // function handleCardSubmit(e: any) {
-    //     //? update this so that the deck title matches the deck id since its an integer in order to post
-    //     const fieldName = e.target.name
-    //     const newFormData = structuredClone(formData)
-    //     newFormData[fieldName as keyof typeof formData] = e.target.value
-    //     setFormData(newFormData)
-    //     setErrorMessage("")
-    // }
-
+if (!decks) {
+    return (
+        <div className="lds-hourglass"></div>
+    )
+}
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

@@ -6,16 +6,6 @@ import { baseUrl } from '../config'
 const CreateDeck = () => {
     const navigate = useNavigate()
 
-
-    // ! Update fields for Deck
-    // ! Update fields for Card
-    // ? When deck form submitted, navigate to create card form. then navigate to deck library
-    // ? tailwind dropdowns for create cards for adding to deck
-    // ? create mulitple cards at once.
-    //? can submit blank deck form
-
-
-    // ? Deck Form
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -54,11 +44,9 @@ const CreateDeck = () => {
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                    Create Your Deck
-                </h2>
-                <button onClick={handleCardClick} className='button is-danger'>Create Cards</button>
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm text-center">
+                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-4">Create Your Deck Below <br /> Or</h2>
+                <button onClick={handleCardClick} className='button flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Create Card</button>
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -125,8 +113,8 @@ const CreateDeck = () => {
                 {errorMessage && <p >{errorMessage}</p>}
             </div>
         </div>
-        
-        
+
+
     )
 }
 
