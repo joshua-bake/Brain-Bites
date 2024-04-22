@@ -6,6 +6,8 @@ import { IUser } from '../interfaces/user'
 
 export default function Navbar({ user, setUser }: { user: IUser | null, setUser: Function }) {
 
+    //! update and refactor. Fix the drop down user bar to show the correct items when user is logged in. 
+
     const navigation = [
         { name: 'Home', href: '/', current: true },
         { name: 'Deck Library', href: 'decks', current: false },
@@ -25,7 +27,7 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
     function logout() {
         localStorage.removeItem('token')
         setUser(null)
-        navigate('/home')
+        navigate('/')
     }
 
     return (

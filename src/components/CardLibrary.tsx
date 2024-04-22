@@ -4,10 +4,10 @@ import { IDeck } from '../interfaces/deck'
 import ShowCards from './ShowCards'
 import { baseUrl } from '../config'
 
-type Cards = null | Array<ICard>
 type Decks = null | Array<IDeck>
 
 const CardLibrary = () => {
+
     const [decks, setDecks] = useState<Decks>(null);
 
     useEffect(() => {

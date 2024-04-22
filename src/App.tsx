@@ -16,19 +16,34 @@ import ShowCards from "./components/ShowCards"
 function App() {
 
   const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   async function fetchUser() {
-    const token = localStorage.getItem('token')
-    const resp = await axios.get(`${baseUrl}/user`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    setUser(resp.data)
+    try {
+      const token = localStorage.getItem('token')
+      if (token) {
+        const resp = await axios.get(`${baseUrl}/user`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        setUser(resp.data)
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) fetchUser()
+    fetchUser()
   }, [])
+
+  if (loading) {
+    // You can render a loading indicator while fetching user data
+    return <div>Loading...</div>
+  }
+
+
 
 
   return (
@@ -42,7 +57,7 @@ function App() {
         <Route path='/deck/create' element={<CreateDeck />} />
         <Route path='/cards' element={<CardLibrary />} />
         <Route path='/card/create' element={<CreateCard />} />
-        <Route path="/cards/:cardId" element={<ShowCards user={user} />} />
+        <Route path="/cards/:cardId" element={<ShowCards _id={""} question={""} answer={""} category={""} id={""} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path="/login" element={<Login fetchUser={fetchUser} />} />
       </Routes>

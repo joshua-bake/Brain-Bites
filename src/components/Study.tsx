@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { baseUrl } from '../config';
+import { ICard } from '../interfaces/card'; // Import the ICard interface
 
 const FlashcardStudy = () => {
-    const [cards, setCards] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isFlipped, setIsFlipped] = useState(false);
-    const [viewedCards, setViewedCards] = useState([]);
+    const [cards, setCards] = useState<ICard[]>([]); // Add type annotation for cards
+    const [currentIndex, setCurrentIndex] = useState<number>(0); // Add type annotation for currentIndex
+    const [isFlipped, setIsFlipped] = useState<boolean>(false);
+    const [viewedCards, setViewedCards] = useState<ICard[]>([]); // Add type annotation for viewedCards
+
+    //! Add a end of study function. Ensure study for the specific deck only shows those cards.
 
     useEffect(() => {
         // Fetch flashcards data from the backend API
@@ -25,7 +28,8 @@ const FlashcardStudy = () => {
         setIsFlipped(!isFlipped);
     };
 
-    const handleNextCard = (difficulty) => {
+    const handleNextCard = (difficulty: string) => {
+        if (cards.length === 0) return; // Ensure cards array is not empty
         // Add current card to viewedCards array
         setViewedCards([...viewedCards, cards[currentIndex]]);
 
@@ -43,11 +47,11 @@ const FlashcardStudy = () => {
                         <div>
                             <div className="flashcard-front card-content">
                                 <h2>Front</h2>
-                                <p>{cards[currentIndex].question}</p>
+                                <p>{cards[currentIndex]?.question}</p> {/* Access question property safely */}
                             </div>
                             <div className="flashcard-back card-content">
                                 <h2>Back</h2>
-                                <p>{cards[currentIndex].answer}</p>
+                                <p>{cards[currentIndex]?.answer}</p> {/* Access answer property safely */}
                             </div>
                         </div>
                     </div>

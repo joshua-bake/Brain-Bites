@@ -3,7 +3,7 @@ import { ICard } from '../interfaces/card'
 
 const ShowCards = ({ question, answer, category, deck, }: ICard) => {
 
-    
+
 
     return (
         <section className="section ">
