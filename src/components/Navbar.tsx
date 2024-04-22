@@ -12,7 +12,7 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
         { name: 'Home', href: '/', current: true },
         { name: 'Deck Library', href: 'decks', current: false },
         { name: 'Card Library', href: 'cards', current: false },
-        { name: 'Study', href: 'study', current: false },
+        { name: 'Create Flashcards', href: 'deck/create', current: false },
         // { name: 'Signup', href: 'signup', current: false },
         // { name: 'Login', href: 'login', current: false },
     ]
@@ -75,15 +75,6 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <button
-                                    type="button"
-                                    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                >
-                                    <span className="absolute -inset-1.5" />
-                                    <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                </button>
-
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="relative ml-3">
                                     <div>
@@ -107,7 +98,31 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            {!user && <Menu.Item>
+                                            {!user && (
+                                                <>
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <a
+                                                                href="signup"
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Signup
+                                                            </a>
+                                                        )}
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <a
+                                                                href="login"
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Login
+                                                            </a>
+                                                        )}
+                                                    </Menu.Item>
+                                                </>
+                                            )}
+                                            {user && <Menu.Item>
                                                 {({ active }) => (
                                                     <a
                                                         href="deck/create"
@@ -118,26 +133,6 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
                                                 )}
                                             </Menu.Item>}
                                             {user && <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="signup"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Signup
-                                                    </a>
-                                                )}
-                                            </Menu.Item>}
-                                            {!user && <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="login"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Login
-                                                    </a>
-                                                )}
-                                            </Menu.Item>}
-                                            {!user && <Menu.Item>
                                                 {({ active }) => (
                                                     <a
                                                         href="#"
@@ -154,25 +149,6 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
                             </div>
                         </div>
                     </div>
-
-                    {/* <Disclosure.Panel className="sm:hidden">
-                        <div className="space-y-1 px-2 pb-3 pt-2">
-                            {navigation.map((item) => (
-                                <Disclosure.Button
-                                    key={item.name}
-                                    as="a"
-                                    href={item.href}
-                                    className={classNames(
-                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'block rounded-md px-3 py-2 text-base font-medium'
-                                    )}
-                                    aria-current={item.current ? 'page' : undefined}
-                                >
-                                    {item.name}
-                                </Disclosure.Button>
-                            ))}
-                        </div>
-                    </Disclosure.Panel> */}
                 </>
             )}
         </Disclosure>

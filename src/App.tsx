@@ -34,17 +34,15 @@ function App() {
     }
   }
 
+
   useEffect(() => {
     fetchUser()
   }, [])
 
   if (loading) {
-    // You can render a loading indicator while fetching user data
+
     return <div>Loading...</div>
   }
-
-
-
 
   return (
     <Router>

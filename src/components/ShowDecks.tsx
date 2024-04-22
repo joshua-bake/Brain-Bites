@@ -6,7 +6,7 @@ const ShowDecks = ({ id, title, description, category }: IDeck) => {
     const navigate = useNavigate();
 
     const handleStudyClick = () => {
-        navigate(`/study/${id}`);
+        navigate(`/study?deckId=${id}`);
     };
 
     // ? Stretch goal will add later to display the revelant cards to the specific deck. 
