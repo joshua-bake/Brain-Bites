@@ -7,8 +7,6 @@ import navbar_image from '../assets/brain-bites-high-resolution-logo-transparent
 
 export default function Navbar({ user, setUser }: { user: IUser | null, setUser: Function }) {
 
-    //! update and refactor. Fix the drop down user bar to show the correct items when user is logged in. 
-
     const navigation = [
         { name: 'Home', href: '/', current: true },
         { name: 'Deck Library', href: 'decks', current: false },
@@ -101,7 +99,7 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             {!user && (
                                                 <>
-                                                    <Menu.Item>
+                                                    {!user && <Menu.Item>
                                                         {({ active }) => (
                                                             <a
                                                                 href="signup"
@@ -110,8 +108,8 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
                                                                 Signup
                                                             </a>
                                                         )}
-                                                    </Menu.Item>
-                                                    <Menu.Item>
+                                                    </Menu.Item>}
+                                                    {!user && <Menu.Item>
                                                         {({ active }) => (
                                                             <a
                                                                 href="login"
@@ -120,7 +118,7 @@ export default function Navbar({ user, setUser }: { user: IUser | null, setUser:
                                                                 Login
                                                             </a>
                                                         )}
-                                                    </Menu.Item>
+                                                    </Menu.Item>}
                                                 </>
                                             )}
                                             {user && <Menu.Item>

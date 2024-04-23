@@ -45,7 +45,6 @@ const FlashcardStudy = () => {
         setIsFlipped(false)
     }
 
-
     const handleEndOfStudy = () => {
         setShowResults(true)
     };

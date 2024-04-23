@@ -27,7 +27,7 @@ const DeckLibrary = () => {
 
     return <section className='section'>
         <div className="container">
-            <div className="columns">
+            <div className="columns is-flex-wrap-wrap">
                 {decks?.map(deck => {
                     return <ShowDecks
                         key={deck._id}
