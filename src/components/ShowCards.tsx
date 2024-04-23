@@ -5,30 +5,23 @@ const ShowCards = ({ question, answer, category, deck, }: ICard) => {
 
 
 
-    return (
-        <section className="section ">
-            <div className="column is-one-quarter-desktop is-one-third-tablet">
-                <div className="card">
-                    <div className="card-header">
-                        <div className="card-header-title is-centered">{question}</div>
-                    </div>
-                    <div className="card-content">
-                        <p>{answer}</p>
-                        <span className="is-centered">{category}</span>
-                        {deck && <p>Deck: {deck.title}</p>}
-                        <div>
-                            <button
-                                type="submit"
-                                className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
-                                Study
-                            </button>
-                        </div>
-                    </div>
+    return <div className="column is-one-quarter-desktop is-one-third-tablet">
+        <div className="card ">
+            <div className="card-header">
+                {/* {deck && <div className="card-header-title is-centered">Deck: {deck.title}</div>} */}
+            </div>
+            <div className="card-image">
+                <div className="card-content">
+                    <p className="has-text-centered is-size-6 pb-4">Question: {question} <br />
+                        Answer: {answer}</p>
+                </div>
+                <div>
+
                 </div>
             </div>
-        </section>
-    );
+        </div>
+
+    </div>
 
 }
 

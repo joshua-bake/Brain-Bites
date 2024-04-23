@@ -8,6 +8,8 @@ type Decks = null | Array<IDeck>
 
 const CreateCard = () => {
 
+    const navigate = useNavigate()
+
     const updateDeckId = (deckId: string) => {
         setFormData(prevState => ({
             ...prevState,
@@ -35,9 +37,8 @@ const CreateCard = () => {
 
     console.log(decks)
 
-    const navigate = useNavigate()
+    
 
-    // ? Card Form
     const [formData, setFormData] = useState({
         question: "",
         answer: "",
@@ -56,7 +57,7 @@ const CreateCard = () => {
 
     async function handleSubmit(e: SyntheticEvent) {
         try {
-            e.preventDefault()
+            // e.preventDefault()
 
             const token = localStorage.getItem('token')
             const resp = await axios.post(`${baseUrl}/cards`, formData, {

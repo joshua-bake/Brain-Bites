@@ -25,7 +25,7 @@ const Login = ({ fetchUser }: { fetchUser: Function }) => {
 
     async function handleSubmit(e: SyntheticEvent) {
         try {
-            e.preventDefault() //? Prevents the page from refreshing
+            // e.preventDefault() 
             const resp = await axios.post(`${baseUrl}/login`, formData)
             localStorage.setItem('token', resp.data.token)
             console.log(resp.data)

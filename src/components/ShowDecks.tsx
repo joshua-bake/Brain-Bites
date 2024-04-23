@@ -6,42 +6,33 @@ const ShowDecks = ({ id, title, description, category }: IDeck) => {
     const navigate = useNavigate();
 
     const handleStudyClick = () => {
-        navigate(`/study?deckId=${id}`);
-    };
+        navigate(`/study?deckId=${id}`)
+    }
 
-    return (
-        <section className="section">
-            <div className="column is-one-quarter-desktop is-one-third-tablet">
-                <div className="card">
-                    <div className="card-header">
-                        <div className="card-header-title is-centered">{title}</div>
-                    </div>
-                    <div className="card-content">
-                        <p>{description}</p>
-                        <span className="is-centered">{category}</span>
-                        <div>
-                            <button
-                                type="button"
-                                onClick={handleStudyClick}
-                                className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
-                                Study
-                            </button>
-                        </div>
-                        {/* <div>
-                            <button
-                                type="button"
-                                onClick={handleCardsClick}
-                                className="flex justify-center rounded-md bg-lime-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
-                                Cards
-                            </button>
-                        </div> */}
-                    </div>
+    return <div className="column is-one-quarter-desktop is-one-third-tablet">
+        <div className="card ">
+            <div className="card-header">
+                <div className="card-header-title is-centered">{title}</div>
+            </div>
+            <div className="card-image">
+                <div className="card-content">
+                    <p className="has-text-centered is-size-6 pb-4">Description: {description} <br />
+                        Category: {category}</p>
+                    <button
+                        type="button"
+                        onClick={handleStudyClick}
+                        className=" card-footer flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                        Study
+                    </button>
+                </div>
+                <div>
+
                 </div>
             </div>
-        </section>
-    );
-};
+        </div>
+
+    </div>
+}
 
 export default ShowDecks;

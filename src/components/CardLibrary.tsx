@@ -31,9 +31,9 @@ const CardLibrary = () => {
         <section className="section">
             <div className="container">
                 {decks.map((deck) => (
-                    <div key={deck.id}>
+                    <div key={deck.id} className='card-title subtitle is-flex is-flex-direction-column'>
                         <h2>{deck.title}</h2>
-                        <div className="cards-container">
+                        <div className="columns is-flex-wrap-wrap">
                             {deck.cards.map((card) => (
                                 <ShowCards key={card.id} {...card} />
                             ))}
