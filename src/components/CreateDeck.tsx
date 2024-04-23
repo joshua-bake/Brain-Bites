@@ -24,7 +24,7 @@ const CreateDeck = () => {
 
     async function handleSubmit(e: SyntheticEvent) {
         try {
-            // e.preventDefault()
+            e.preventDefault()
 
             const token = localStorage.getItem('token')
             const resp = await axios.post(`${baseUrl}/decks`, formData, {

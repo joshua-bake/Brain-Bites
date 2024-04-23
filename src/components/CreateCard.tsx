@@ -37,7 +37,7 @@ const CreateCard = () => {
 
     console.log(decks)
 
-    
+
 
     const [formData, setFormData] = useState({
         question: "",
@@ -57,7 +57,7 @@ const CreateCard = () => {
 
     async function handleSubmit(e: SyntheticEvent) {
         try {
-            // e.preventDefault()
+            e.preventDefault()
 
             const token = localStorage.getItem('token')
             const resp = await axios.post(`${baseUrl}/cards`, formData, {
@@ -71,11 +71,11 @@ const CreateCard = () => {
     }
     console.log(formData)
 
-if (!decks) {
-    return (
-        <div className="lds-hourglass"></div>
-    )
-}
+    if (!decks) {
+        return (
+            <div className="lds-hourglass"></div>
+        )
+    }
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -135,7 +135,7 @@ if (!decks) {
                                 </select>
                             </label>
                         </div>
-                        
+
                     </div>
 
 
