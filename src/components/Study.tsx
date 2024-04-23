@@ -6,9 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-
-//! fix flashcard need animation to flip, need front and back separate style to a flashcard
-
 const FlashcardStudy = () => {
     const navigate = useNavigate();
     const [cards, setCards] = useState<ICard[]>([]);
@@ -36,36 +33,37 @@ const FlashcardStudy = () => {
         } catch (error) {
             console.error('Error fetching cards:', error);
         }
-    };
-
-    const handleFlip = () => {
-        setIsFlipped(!isFlipped);
-    };
+    }
 
     const handleNextCard = (difficulty: string) => {
-        if (cards.length === 0) return;
-        const currentCard = cards[currentIndex];
-        currentCard.difficulty = difficulty; // Assign difficulty to the current card
-        setViewedCards([...viewedCards, currentCard]);
-        const nextIndex = (currentIndex + 1) % cards.length;
-        setCurrentIndex(nextIndex);
-        setIsFlipped(false);
-    };
+        if (cards.length === 0) return
+        const currentCard = cards[currentIndex]
+        currentCard.difficulty = difficulty // Assign difficulty to the current card
+        setViewedCards([...viewedCards, currentCard])
+        const nextIndex = (currentIndex + 1) % cards.length
+        setCurrentIndex(nextIndex)
+        setIsFlipped(false)
+    }
 
 
     const handleEndOfStudy = () => {
-        setShowResults(true);
+        setShowResults(true)
     };
 
     const handleRestartStudy = () => {
-        setCurrentIndex(0);
-        setViewedCards([]);
-        setShowResults(false);
+        setCurrentIndex(0)
+        setViewedCards([])
+        setShowResults(false)
     };
 
     function handleReturnToDeck() {
-        navigate('/decks');
+        navigate('/decks')
     }
+
+    const handleCardClick = () => {
+        setIsFlipped(!isFlipped)
+    }
+
 
     return (
         <div className="flashcard-study card">
@@ -145,39 +143,32 @@ const FlashcardStudy = () => {
                 </div>
             ) : (
                 <>
-                    <div className="study-progress">
+                    <div className="study-progress subtitle rounded-mb border-gray-500 pl-3 pt-3">
                         <p>Studied: {viewedCards.length}</p>
                         <p>Remaining: {cards.length - viewedCards.length}</p>
                     </div>
                     <div className='card-grid'>
                         <div className={`card flashcard-inner ${isFlipped ? 'flipped' : ''}`} >
-                            {cards.length > 0 ? (
-                                <div className="flashcard">
-                                    <div className={`flashcard-inner ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
-                                        <div onClick={handleFlip} className="flip-button card-header mx-4">
-                                            <button>Flip Card</button>
-                                        </div>
-                                        <div onClick={() => setIsFlipped(!isFlipped)} className="flashcard-front card-content text-center">
-                                            <h2>Front</h2>
-                                            <p>{cards[currentIndex]?.question}</p>
-                                        </div>
+                            <div className={`flashcard ${isFlipped ? 'flipped' : ''} rounded-md border-4 border-green-600 border-solid`} onClick={handleCardClick}>
+                                <div className="flashcard-inner text-center title">
+                                    <div className="flashcard-front has-text-centered pt-4 ">
+                                        {/* Front side content */}
+                                        <h2 className='text-center question-side'>{cards[currentIndex]?.question}</h2>
                                     </div>
-                                    <div onClick={() => setIsFlipped(!isFlipped)} className="flashcard-back card-content text-center">
-                                        <h2>Back</h2>
-                                        <p>{cards[currentIndex]?.answer}</p>
+                                    <div className="flashcard-back has-text-centered pt-4">
+                                        {/* Back side content */}
+                                        <span className='text-center answer-side'>{cards[currentIndex]?.answer}</span>
                                     </div>
                                 </div>
-                            ) : (
-                                <p>No flashcards available.</p>
-                            )}
-                            <div className="controls has-text-centered">
-                                <button onClick={() => handleNextCard('easy')} className='mx-4'>Easy</button>
-                                <button onClick={() => handleNextCard('medium')} className='mx-4'>Medium</button>
-                                <button onClick={() => handleNextCard('hard')} className='mx-4'>Hard</button>
-                                <button onClick={() => handleNextCard('challenging')} className='mx-4'>Challenging</button>
                             </div>
-                            <div className="controls has-text-centered">
-                                <button onClick={handleEndOfStudy} className='mx-4 pt-4'>End Study Session</button>
+                            <div className="controls has-text-centered pt-3">
+                                <button onClick={() => handleNextCard('easy')} className='mx-4 button is-info is-dark'>Easy</button>
+                                <button onClick={() => handleNextCard('medium')} className='mx-4 button is-success'>Medium</button>
+                                <button onClick={() => handleNextCard('hard')} className='mx-4 button is-warning'>Hard</button>
+                                <button onClick={() => handleNextCard('challenging')} className='mx-4 button is-danger is-dark'>Challenging</button>
+                            </div>
+                            <div className="controls has-text-centered pt-6 pb-4">
+                                <button onClick={handleEndOfStudy} className='mx-4 pt-4 pb-4 button is-link is-dark'>End Study Session</button>
                             </div>
                         </div>
                     </div>
