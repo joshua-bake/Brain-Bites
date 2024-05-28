@@ -21,6 +21,7 @@ dist
 Project-4.code-workspace
 vite.config.ts
 d.ts
+.gitignore
 
 # Editor directories and files
 .vscode/*
