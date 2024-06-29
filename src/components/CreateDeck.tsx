@@ -43,7 +43,7 @@ const CreateDeck = () => {
     }
 
     return (
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="hero is-fullheight justify-center">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm text-center">
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-4">Create Your Deck Below <br /> Or</h2>
                 <button onClick={handleCardClick} className='flex w-full justify-center buttons-bg rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-rose-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300'>Create Card</button>

@@ -25,7 +25,7 @@ const DeckLibrary = () => {
         return <div className="lds-hourglass"></div>
     }
 
-    return <section className='section'>
+    return <section className='hero is-fullheight py-4 mt-2'>
         <div className="container">
             <div className="columns is-flex-wrap-wrap">
                 {decks?.map(deck => {

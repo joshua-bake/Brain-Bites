@@ -1,4 +1,3 @@
-import React from 'react';
 import { IDeck } from '../interfaces/deck';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,11 +11,11 @@ const ShowDecks = ({ id, title, description, category }: IDeck) => {
     return <div className="column is-one-quarter-desktop is-one-third-tablet">
         <div className="card ">
             <div className="card-header">
-                <div className="card-header-title is-centered">{title}</div>
+                <div className="card-header-title text-xl is-centered">{title}</div>
             </div>
             <div className="card-image">
                 <div className="card-content">
-                    <p className="has-text-centered is-size-6 pb-4">Description: {description} <br />
+                    <p className="has-text-centered text-lg pb-4">Description: {description} <br />
                         Category: {category}</p>
                     <button
                         type="button"
@@ -26,12 +25,8 @@ const ShowDecks = ({ id, title, description, category }: IDeck) => {
                         Study
                     </button>
                 </div>
-                <div>
-
-                </div>
             </div>
         </div>
-
     </div>
 }
 
